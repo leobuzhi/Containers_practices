@@ -1,5 +1,3 @@
-成员函数
-
 //constructor
 //default (1)
 //explicit list(const allocator_type& alloc = allocator_type());
@@ -39,8 +37,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-0 8 11
+//输出：
+//0 8 11
 
 //函数签名
 //copy(1)
@@ -63,9 +61,9 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-first_list's size is 0
-second_list's size is 3
+//输出：
+//first_list's size is 0
+//second_list's size is 3
 
 //函数签名
 //iterator begin() noexcept;
@@ -83,8 +81,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1 2 3 4 5
+//输出：
+//1 2 3 4 5
 
 //函数签名
 //reverse_iterator rbegin() noexcept;
@@ -102,8 +100,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-5 4 3 2 1
+//输出：
+//5 4 3 2 1
 
 //函数签名
 //const_iterator cbegin() const noexcept;
@@ -119,8 +117,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1 2 3 4 5
+//输出：
+//1 2 3 4 5
 
 //函数签名
 //const_reverse_iterator crbegin() const noexcept;
@@ -136,10 +134,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-5 4 3 2 1
-
-Capacity
+//输出：
+//5 4 3 2 1
 
 //函数签名
 //bool empty() const noexcept;
@@ -162,12 +158,10 @@ int main()
 
 	return 0;
 }
-输出：
-first_list is empty 
-first_list's size is 1
-first_list's maxsize is 768614336404564650
-
-Element access
+//输出：
+//first_list is empty 
+//first_list's size is 1
+//first_list's maxsize is 768614336404564650
 
 //函数签名
 //reference front();
@@ -186,9 +180,7 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出 1 2 4
-
-Modifiers
+//输出 1 2 4
 
 //函数签名
 //range(1)
@@ -221,10 +213,10 @@ int main()
 
 	return 0;
 }
-输出：
-1 2 3
-1 1 1
-2 2 2
+//输出：
+//1 2 3
+//1 1 1
+//2 2 2
 
 //函数签名
 //template <class... Args>
@@ -247,13 +239,13 @@ int main()
 		cout << x.first << " " << x.second << endl;
 	return 0;
 }
-输出：
-3 c
-2 b
-1 a
-1 a
-2 b
-3 c
+//输出：
+//3 c
+//2 b
+//1 a
+//1 a
+//2 b
+//3 c
 
 //函数签名
 //void push_front(const value_type& val);
@@ -285,13 +277,13 @@ int main()
 	}
 	return 0;
 }
-输出：
-3
-3
-2
-2
-1
-1
+//输出：
+//3
+//3
+//2
+//2
+//1
+//1
 
 //函数签名
 //template <class... Args>
@@ -308,8 +300,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-0 1 2 3 4 5
+//输出：
+//0 1 2 3 4 5
 
 //函数签名
 //single element(1)
@@ -346,10 +338,10 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-0
-4
-4 5 0 0 0 9 9 9 6 0 1 2 3
+//输出：
+//0
+//4
+//4 5 0 0 0 9 9 9 6 0 1 2 3
 
 //函数签名
 //iterator erase(const_iterator position);
@@ -383,12 +375,12 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-3
-10
-3
-10
-6 7 10 1 3 4 5
+//输出：
+//3
+//10
+//3
+//10
+//6 7 10 1 3 4 5
 
 //函数签名
 //void resize(size_type n);
@@ -412,11 +404,9 @@ int main()
 	cout << first_list.size() << endl;
 	return 0;
 }
-输出：
-1 2 3 1 1 0
-0
-
-Operations
+//输出：
+//1 2 3 1 1 0
+//0
 
 //函数签名
 //entire list(1)
@@ -454,9 +444,9 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-7 8 3 4 1 5 6
-2
+//输出：
+//7 8 3 4 1 5 6
+//2
 
 //函数签名
 //void remove(const value_type& val);
@@ -524,13 +514,13 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-15 41 25 1 41 3 42 41
-15 41 25 41 42 41
-42 
-1 2 3 5 4 1
-1 2 3 4 5
-1 2 3 4 5
+//输出：
+//15 41 25 1 41 3 42 41
+//15 41 25 41 42 41
+//42 
+//1 2 3 5 4 1
+//1 2 3 4 5
+//1 2 3 4 5
 
 //函数签名
 //(1)
@@ -565,8 +555,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1.9 1.1 1.3 1.6 2.2 2.4 2.4 3.5
+//输出：
+//1.9 1.1 1.3 1.6 2.2 2.4 2.4 3.5
 
 //函数签名
 //(1)
@@ -609,10 +599,10 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-Three one two
-one Three two
-two Three onw
+//输出：
+//Three one two
+//one Three two
+//two Three onw
 
 //函数签名
 //allocator_type get_allocator() const noexcept;
@@ -634,8 +624,8 @@ int main()
 	first_list.get_allocator().deallocate(p, 5);
 	return 0;
 }
-输出：
-1 2 3 4 5
+//输出：
+//1 2 3 4 5
 
 //函数签名
 //(1)
@@ -678,10 +668,10 @@ int main()
 		cout << "second_list <= third_list" << endl;
 	return 0;
 }
-输出：
-first_list != second_list
-first_list < second_list
-second_list >= third_list
+//输出：
+//first_list != second_list
+//first_list < second_list
+//second_list >= third_list
 
 //函数签名
 //template <class T, class Alloc>
@@ -702,6 +692,6 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-3 2 1
-1 2 3
+//输出：
+//3 2 1
+//1 2 3
