@@ -13,9 +13,9 @@ int main()
         cout << *it << " ";
     return 0;
 }
-输出： 
-2 4 8 7 11 
-PS:如果array为空，begin()返回值与end()一样
+//输出： 
+//2 4 8 7 11 
+//PS:如果array为空，begin()返回值与end()一样
 
 //函数签名：
 //reverse_iterator rbegin() noexcept;
@@ -30,8 +30,8 @@ int main()
         cout << *it << " ";
     return 0;
 }
-输出： 
-11 7 8 4 2
+//输出： 
+//11 7 8 4 2
 
 //函数签名:
 //const_iterator cbegin() const noexcept;
@@ -46,8 +46,8 @@ int main()
         cout << *it << " ";
     return 0;
 }
-输出： 
-2 4 8 7 11
+//输出： 
+//2 4 8 7 11
 
 //函数签名:
 //const_iterator crbegin() const noexcept;
@@ -62,8 +62,8 @@ int main()
         cout << *it << " ";
     return 0;
 }
-输出： 
-11 7 8 4 2
+//输出： 
+//11 7 8 4 2
 
 Capacity
 
@@ -82,12 +82,12 @@ cout << my_chars.size() << endl;
 cout << sizeof(my_chars) << endl;
   return 0;
 }
-输出： 
-5 
-20 5*4（int的字节大小） 
-5 
-5 5*1（char的字节大小） 
-PS:size() 总是等于第二个用来实例化模板的参数
+//输出： 
+//5 
+//20 5*4（int的字节大小） 
+//5 
+//5 5*1（char的字节大小） 
+//PS:size() 总是等于第二个用来实例化模板的参数
 
 //函数签名
 //constexpr size_type max_size() noexcept;
@@ -101,9 +101,9 @@ int main()
     cout << my_ints.max_size() << endl;
   return 0;
 }
-输出： 
-5 
-5
+//输出： 
+//5 
+//5
 
 //函数签名
 //constexpr bool empty() noexcept;
@@ -118,9 +118,9 @@ cout << first_array.empty() << endl;
 cout << second_array.empty() << endl;
 return 0;
 }
-输出： 
-1 
-0
+//输出： 
+//1 
+//0
 
 Element access
 
@@ -139,8 +139,8 @@ int main()
     cout << endl;
     return 0;
 }
-输出： 
-0 1 2 3 4 5 6 7 8 9
+//输出： 
+//0 1 2 3 4 5 6 7 8 9
 
 //函数签名
 //reference at ( size_type n );
@@ -157,8 +157,8 @@ cout << my_array.at(i) << " ";
 cout << endl;
 return 0;
 }
-输出： 
-1 2 3 4 5 6 7 8 9 10
+//输出： 
+//1 2 3 4 5 6 7 8 9 10
 
 //函数签名
 //reference front();
@@ -173,10 +173,10 @@ int main()
     cout << my_array.back() << endl;
     return 0;
 }
-输出： 
-0 
-11 
-PS：对空的array调用front()或者back()会造成未定义行为
+//输出： 
+//0 
+//11 
+//PS：对空的array调用front()或者back()会造成未定义行为
 
 //函数签名
 // value_type* data() noexcept;
@@ -193,8 +193,8 @@ int main()
     cout << char_array.data() << endl;
     return 0;
 }
-输出： 
-my string
+//输出： 
+//my string
 
 Modifiers
 
@@ -212,8 +212,8 @@ int main()
         cout << my_array[0] << " ";
     return 0;
 }
-输出： 
-8 8 8 8 8 8 8 8
+//输出： 
+//8 8 8 8 8 8 8 8
 
 //函数签名
 // void swap (array& x) noexcept(noexcept(swap(declval<value_type&>(),declval<value_type&>())));
@@ -239,14 +239,12 @@ int main()
     cout << endl;
     return 0;
 }
-输出： 
-1 2 3 
-3 2 1 
-3 2 1 
-1 2 3 
-PS：交换的两个array必须包含相同的类型和大小，与其他容器的swap()不同，array的swap()只需要线性时间
-
-非成员函数
+//输出： 
+//1 2 3 
+//3 2 1 
+//3 2 1 
+//1 2 3 
+//PS：交换的两个array必须包含相同的类型和大小，与其他容器的swap()不同，array的swap()只需要线性时间
 
 //函数签名
 //template <size_t I, class T, size_t N> T& get(array<T, N>& arr) noexcept;
@@ -272,10 +270,10 @@ int main()
 
     return 0;
 }
-输出： 
-3 
-1 
-PS：get()重载了tuple的同名函数
+//输出： 
+//3 
+//1 
+//PS：get()重载了tuple的同名函数
 
 //函数签名
 //(1)
@@ -318,11 +316,11 @@ int main()
         cout << "a_array is greater than or equal to b_array" << endl;
     return 0;
 }
-输出： 
-a_array and b_array are equal 
-a_array and b_array are not equal 
-b_array is less than c_array 
-c_array is greater than b_array 
-a_array is less than or equal to b_array 
-a_array is greater than or equal to b_array 
-PS：array重载了关系操作运算符
+//输出： 
+//a_array and b_array are equal 
+//a_array and b_array are not equal 
+//b_array is less than c_array 
+//c_array is greater than b_array 
+//a_array is less than or equal to b_array 
+//a_array is greater than or equal to b_array 
+//PS：array重载了关系操作运算符
