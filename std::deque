@@ -37,8 +37,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-0 8 11
+//输出：
+//0 8 11
 
 //函数签名(构造函数)：
 //copy(1)
@@ -62,9 +62,9 @@ int main()
 
 	return 0;
 }
-输出：
-Size of first_deque  is 8
-Size of first_deque  is 11
+//输出：
+//Size of first_deque  is 8
+//Size of first_deque  is 11
 
 //函数签名
 //iterator begin() noexcept;
@@ -84,8 +84,8 @@ int	main()
 	}
 	return 0;
 }
-输出：
-1 2 3 4 5
+//输出：
+//1 2 3 4 5
 
 //函数签名
 //iterator end() noexcept;
@@ -104,8 +104,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1 2 3 4 5
+//输出：
+//1 2 3 4 5
 
 //函数签名
 //reverse_iterator rbegin() noexcept;
@@ -127,8 +127,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-5 4 3 2 1
+//输出：
+//5 4 3 2 1
 
 //函数签名
 //const_iterator cbegin() const noexcept;
@@ -145,8 +145,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1 2 3 4 5
+//输出：
+//1 2 3 4 5
 
 //函数签名
 //const_reverse_iterator crbegin() const noexcept;
@@ -163,8 +163,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-5 4 3 2 1
+//输出：
+//5 4 3 2 1
 
 //函数签名
 //size_type size() const noexcept;
@@ -188,11 +188,11 @@ int main()
 	cout << "Size of my_deque is " << my_deque.size() << endl;
 	return 0;
 }
-输出：
-Size of my_deque is 0
-Size of my_deque is 5
-Size of my_deque is 10
-Size of my_deque is 9
+//输出：
+//Size of my_deque is 0
+//Size of my_deque is 5
+//Size of my_deque is 10
+//Size of my_deque is 9
 
 //函数签名
 //size_type max_size() const noexcept;
@@ -214,10 +214,10 @@ int main()
 		cout << "Size exceeds the limit" << endl;
 	return 0;
 }
-输入：3
-输出：Size of my_deque is 3
-输入：999999999999999
-输出：Size exceeds the limit
+//输入：3
+//输出：Size of my_deque is 3
+//输入：999999999999999
+//输出：Size exceeds the limit
 
 //函数签名
 //void resize(size_type n);
@@ -252,10 +252,10 @@ int main()
 
 	return 0;
 }
-输出：
-1 2 3 4 5
-1 2 3 4 5 10 10 10
-1 2 3 4 5 10 10 10 0 0 0 0 
+//输出：
+//1 2 3 4 5
+//1 2 3 4 5 10 10 10
+//1 2 3 4 5 10 10 10 0 0 0 0 
 
 //函数签名
 //bool empty() const noexcept;
@@ -277,8 +277,8 @@ int main()
 	cout << sum << endl;
 	return 0;
 }
-输出：
-55
+//输出：
+//55
 
 //函数签名
 //void shrink_to_fit();
@@ -295,9 +295,9 @@ int main()
 	my_deque.shrink_to_fit();		//现在释放内存了，此函数有点类似于vector的reserve()
 	return 0;
 }
-输出：
-size of my_deque is 10
-size of my_deque is 5
+//输出：
+//size of my_deque is 10
+//size of my_deque is 5
 
 //函数签名
 //reference operator[] (size_type n);
@@ -324,7 +324,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-9 8 7 6 5 4 3 2 1 0
+//输出：
+//9 8 7 6 5 4 3 2 1 0
 
 //函数签名
 //reference at(size_type n);
@@ -343,8 +344,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-0 1 2 3 4 5 6 7 8 9
+//输出：
+//0 1 2 3 4 5 6 7 8 9
 
 //函数签名
 //reference front();
@@ -365,8 +366,8 @@ int main()
 	cout << my_deque.front() << endl;
 	return 0;
 }
-输出：
-3
+//输出：
+//3
 
 //函数签名
 //range(1)
@@ -407,10 +408,10 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-100 100 100 100 100 100 100
-100 100 100 100 100 100 
-0 8 11
+//输出：
+//100 100 100 100 100 100 100
+//100 100 100 100 100 100 
+//0 8 11
 
 //函数签名
 //void push_back(const value_type& val);
@@ -434,11 +435,11 @@ int main()
 	cout << my_deque.size() << endl;
 	return 0;
 }
-输出：
-1
-2
-2
-0
+//输出：
+//1
+//2
+//2
+//0
 
 //函数签名
 //single element(1)
@@ -475,8 +476,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1 5 3 3 5 10 2 3 4 5
+//输出：
+//1 5 3 3 5 10 2 3 4 5
 
 //函数签名
 //single element(1)
@@ -508,8 +509,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-3 5
+//输出：
+//3 5
 
 //函数签名
 //void swap(deque& x);
@@ -535,9 +536,9 @@ int main()
 
 	return 0;
 }
-输出：
-3 2 1 
-1 2 3 4 5
+//输出：
+//3 2 1 
+//1 2 3 4 5
 
 //函数签名
 //void clear() noexcept;
@@ -560,9 +561,9 @@ int main()
 
 	return 0;
 }
-输出：
-0 
-1 3 
+//输出：
+//0 
+//1 3 
 
 //函数签名
 //template <class... Args>
@@ -584,8 +585,8 @@ int main()
 
 	return 0;
 }
-输出：
-1 20 10 2 3 30
+//输出：
+//1 20 10 2 3 30
 
 //函数签名
 //template <class... Args>
@@ -608,8 +609,8 @@ int main()
 
 	return 0;
 }
-输出：
-8 1 2 3 11
+//输出：
+//8 1 2 3 11
 
 //函数签名
 //allocator_type get_allocator() const noexcept;
@@ -636,8 +637,8 @@ int main()
 
 	return 0;
 }
-输出：
-0 1 2 3 4
+//输出：
+//0 1 2 3 4
 
 //函数签名
 //(1)
@@ -679,10 +680,10 @@ int main()
 		cout << "first_deque is greater than or equal to second_deque" << endl;
 	return 0;
 }
-输出：
-first_deque and second_deque are not equal
-first_deque is less than second_deque
-first_deque is less than or equal to second_deque
+//输出：
+//first_deque and second_deque are not equal
+//first_deque is less than second_deque
+//first_deque is less than or equal to second_deque
 
 //函数签名
 //allocator_type get_allocator() const noexcept;
@@ -707,6 +708,6 @@ int main()
 	}
 	return 0;
 }
-输出：
-1 2 3 4 5
-1 2 3
+//输出：
+//1 2 3 4 5
+//1 2 3
