@@ -37,13 +37,13 @@ int main()
 	cout << "sixth_sl:"; for (const int &x : sixth_sl) cout << x << " "; cout << endl;
 	return 0;
 }
-输出：
-first_fl :
-second_sl :11 11 11 11 11 11 11 11
-third_sl :11 11 11 11 11 11 11 11
-fourth_sl :
-fifth_sl :11 11 11 11 11 11 11 11
-sixth_sl :
+//输出：
+//first_fl :
+//second_sl :11 11 11 11 11 11 11 11
+//third_sl :11 11 11 11 11 11 11 11
+//fourth_sl :
+//fifth_sl :11 11 11 11 11 11 11 11
+//sixth_sl :
 
 //函数签名
 //copy(1)
@@ -75,9 +75,9 @@ int main()
 	cout << "second_fl:"; for (const int& x : second_fl) cout << x << " "; cout << endl;
 	return 0;
 }
-输出：
-first_fl :5 5 5
-second_fl :10 10 10
+//输出：
+//first_fl :5 5 5
+//second_fl :10 10 10
 
 //函数签名
 //iterator before_begin() noexcept;
@@ -107,9 +107,9 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-10 20 30 40 50
-0 10 20 30 40 50
+//输出：
+//10 20 30 40 50
+//0 10 20 30 40 50
 
 //函数签名
 //bool empty() const noexcept;
@@ -128,9 +128,9 @@ int main()
 	cout << "first_sl max_size is :" << first_sl.max_size() << endl;
 	return 0;
 }
-输出：
-not empty
-first_sl max_size is :536870911
+//输出：
+//not empty
+//first_sl max_size is :536870911
 
 //函数签名 
 //reference front();
@@ -147,8 +147,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-99 8 11
+//输出：
+//99 8 11
 
 //函数签名
 //range(1)
@@ -179,10 +179,10 @@ int main()
 
 	return 0;
 }
-输出：
-first_sl : 0 8 11
-second_sl : 0 8 11
-third_sl :1 1 1
+//输出：
+//first_sl : 0 8 11
+//second_sl : 0 8 11
+//third_sl :1 1 1
 fourth_sl :2 3 4
 
 //函数签名
@@ -203,10 +203,10 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-3 c
-2 b
-1 a
+//输出：
+//3 c
+//2 b
+//1 a
 
 //函数签名
 //void push_front(const value_type& vakl);
@@ -226,10 +226,10 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-6 c
-4 b
-2 a
+//输出：
+//6 c
+//4 b
+//2 a
 
 //函数签名
 //void pop_front();
@@ -248,10 +248,10 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1 
-2
-3
+//输出：
+//1 
+//2
+//3
 
 //函数签名
 //template <class... Args>
@@ -269,8 +269,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-2 5 3 4 6
+//输出：
+//2 5 3 4 6
 
 //函数签名
 //(1)iterator insert_after(const_iterator position, const value_type& val);
@@ -297,8 +297,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-2 0 0 0 0 4 4 1 2 3 4 6
+//输出：
+//2 0 0 0 0 4 4 1 2 3 4 6
 
 //函数签名
 //iterator erase_after(const_iterator position);
@@ -317,8 +317,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1 3
+//输出：
+//1 3
 
 //函数签名
 //void swap(forward_list& fwdlst);
@@ -338,9 +338,9 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-4 5 6
-1 2 3
+//输出：
+//4 5 6
+//1 2 3
 
 //函数签名
 //void resize(size_type n);
@@ -358,8 +358,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1 2 3 0 0
+//输出：
+//1 2 3 0 0
 
 //函数签名
 //void clear() noexcept;
@@ -376,8 +376,8 @@ int main()
 		cout << "not empty" << endl;
 	return 0;
 }
-输出：
-empty
+//输出：
+//empty
 
 //函数签名
 //entire list(1)
@@ -413,9 +413,9 @@ int main()
 
 	return 0;
 }
-输出：
-6 4 1 2 3 
-5
+//输出：
+//6 4 1 2 3 
+//5
 
 //函数签名
 //void remove(const value_type& val);
@@ -433,8 +433,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1 2 3 5 5 3 2 1
+//输出：
+//1 2 3 5 5 3 2 1
 
 //函数签名
 //template <class Predicate>
@@ -466,8 +466,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-22 44
+//输出：
+//22 44
 
 //函数签名
 //(1)void unique();
@@ -506,8 +506,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1.1 5 8.5 15.5
+//输出：
+//1.1 5 8.5 15.5
 
 //函数签名
 //(1)void merge(forward_list& fwdlst);
@@ -541,9 +541,9 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1 2 3 4 5 6
-10 8 6 6 5 4 3 2 1
+//输出：
+//1 2 3 4 5 6
+//10 8 6 6 5 4 3 2 1
 
 //函数签名
 //(1)void sort();
@@ -570,9 +570,9 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-1 2 3 4 5 6
-6 5 4 3 2 1
+//输出：
+//1 2 3 4 5 6
+//6 5 4 3 2 1
 
 //函数签名
 //void reverse() noexcept;
@@ -590,8 +590,8 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-3 2 1
+//输出：
+//3 2 1
 
 //函数签名
 //(1)
@@ -630,9 +630,9 @@ int main()
 		cout << "second_sl<=third_sl" << endl;
 	return 0;
 }
-输出：
-first_sl == second_sl
-second_sl >= third_sl
+//输出：
+//first_sl == second_sl
+//second_sl >= third_sl
 
 //函数签名
 //template <class T, class Alloc>
@@ -653,6 +653,6 @@ int main()
 	cout << endl;
 	return 0;
 }
-输出：
-3 2 1
-1 2 3
+//输出：
+//3 2 1
+//1 2 3
