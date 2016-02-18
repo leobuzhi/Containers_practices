@@ -397,3 +397,142 @@ int main()
 //100 100 3 2 100
 //6 6 6 100 100 3 2 100
 //6 6 6 100 100 3 2 
+
+//函数签名  
+//iterator erase(const_iterator position);  
+//iterator erase(const_iterator first, const_iterator last);  
+//void swap(vector& x);  
+//template <class... Args>  
+//iterator emplace(const_iterator position, Args&&... args);  
+//template <class... Args>  
+//void emplace_back(Args&&... args);  
+//template <class... Args>  
+//void emplace_back(Args&&... args);  
+//void clear() noexcept;  
+#include<iostream>  
+#include<vector>  
+using namespace std;
+int main()
+{
+	vector<int> first_vector;
+	vector<int> second_vector;
+	for (int i = 1; i <= 10; i++)
+		first_vector.push_back(i);
+	//删除第四个元素  
+	first_vector.erase(first_vector.begin() + 3);
+
+	//删除第5到第七个元素  
+	first_vector.erase(first_vector.begin() + 4, first_vector.begin() + 6);
+
+	for each (auto var in first_vector)
+	{
+		cout << var << " ";
+	}
+	cout << endl;
+
+	first_vector.swap(second_vector);
+	cout << second_vector.size();
+	cout << endl;
+
+	//在起始位置插入一个100  
+	second_vector.emplace(second_vector.begin(), 100);
+	for each (auto var in second_vector)
+	{
+		cout << var << " ";
+	}
+	cout << endl;
+
+	//在末尾插入一个200  
+	second_vector.emplace_back(200);
+	for each (auto var in second_vector)
+	{
+		cout << var << " ";
+	}
+	cout << endl;
+
+	second_vector.clear();
+	cout << second_vector.size();
+	cout << endl;
+	return 0;
+}
+//输出：
+//1 2 3 5 8 9 10
+//7
+//100 1 2 3 5 8 9 10
+//100 1 2 3 5 8 9 10 200
+//0
+
+//函数签名  
+//allocator_type get_allocator() const noexcept;  
+#include<iostream>  
+#include<vector>  
+using namespace std;
+int main()
+{
+	vector<int> my_vector;
+	int *p;
+	unsigned int i;
+	//用vector的allocator分配五个int的空间  
+	p = my_vector.get_allocator().allocate(5);
+
+	for (i = 0; i != 5; i++)
+		my_vector.get_allocator().construct(&p[i], i);
+
+	for (int i = 0; i != 5; i++)
+		cout << p[i] << " ";
+	cout << endl;
+
+	for (i = 0; i != 5; i++)
+		my_vector.get_allocator().destroy(&p[i]);
+	my_vector.get_allocator().deallocate(p, 5);
+
+	return 0;
+}
+//输出：
+//0 1 2 3 4
+
+//函数签名  
+//(1)  
+//template <class T, class Alloc>  
+//bool operator== (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);  
+//(2)  
+//template <class T, class Alloc>  
+//bool operator!= (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);  
+//(3)  
+//template <class T, class Alloc>  
+//bool operator<  (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);  
+//(4)  
+//template <class T, class Alloc>  
+//bool operator<= (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);  
+//(5)  
+//template <class T, class Alloc>  
+//bool operator>  (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);  
+//(6)  
+//template <class T, class Alloc>  
+//bool operator>= (const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);  
+#include<iostream>  
+#include<vector>  
+using namespace std;
+int main()
+{
+	vector<int> first_vector = { 1,2,3 };
+	vector<int> second_vector = { 3,2,1 };
+
+	if (first_vector == second_vector)
+		cout << "first_vector and second_vector are equal\n";
+	if (first_vector != second_vector)
+		cout << "first_vector and second_vector are not equal\n";
+	if (first_vector< second_vector)
+		cout << "first_vector is less than second_vector\n";
+	if (first_vector> second_vector)
+		cout << "first_vector is greater than second_vector\n";
+	if (first_vector <= second_vector)
+		cout << "first_vector is less than or equal to second_vector\n";
+	if (first_vector >= second_vector)
+		cout << "first_vector is greater than or equal to second_vector\n";
+	return 0;
+}
+//输出：
+//first_vector and second_vector are not equal
+//first_vector is less than second_vector
+//first_vector is less than or equal to second_vector
