@@ -536,3 +536,32 @@ int main()
 //first_vector and second_vector are not equal
 //first_vector is less than second_vector
 //first_vector is less than or equal to second_vector
+
+//函数签名  
+//template <class T, class Alloc>  
+//void swap(vector<T, Alloc>& x, vector<T, Alloc>& y);  
+#include<iostream>  
+#include<vector>  
+using namespace std;
+int main()
+{
+	//非成员函数的swap()效率小于等于成员函数的swap(),所以建议用成员函数版的  
+	vector<int> first_vector = { 1,2,3 };
+	vector<int> second_vector = { 3,2,1 };
+
+	swap(first_vector, second_vector);
+	for each (auto var in first_vector)
+	{
+		cout << var << " ";
+	}
+	cout << endl;
+	for each (auto var in second_vector)
+	{
+		cout << var << " ";
+	}
+	cout << endl;
+	return 0;
+}
+//输出：
+//3 2 1
+//1 2 3
