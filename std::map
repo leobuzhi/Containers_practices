@@ -1,1 +1,307 @@
+//函数签名
+//empty (1)	
+//map();
+//explicit map (const key_compare& comp,
+//              const allocator_type& alloc = allocator_type());
+//explicit map (const allocator_type& alloc);
+//range (2)	
+//template <class InputIterator>
+//  map (InputIterator first, InputIterator last,
+//       const key_compare& comp = key_compare(),
+//       const allocator_type& = allocator_type());
+//template <class InputIterator>
+//  map (InputIterator first, InputIterator last,
+//       const allocator_type& = allocator_type());
+//copy (3)	
+//map (const map& x);
+//map (const map& x, const allocator_type& alloc);
+//move (4)	
+//map (map&& x);
+//map (map&& x, const allocator_type& alloc);
+//initializer list (5)	
+//map (initializer_list<value_type> il,
+//     const key_compare& comp = key_compare(),
+//     const allocator_type& alloc = allocator_type());
+//map (initializer_list<value_type> il,
+//     const allocator_type& alloc = allocator_type());
+#include<iostream>
+#include<map>
+using namespace std;
+bool funCmp(char lhs, char rhs)
+{
+	return lhs < rhs;
+}
+struct classCmp{
+	bool operator ()(const char& lhs, const char &rhs)const
+	{
+		return lhs < rhs;
+	}
+};
+int main()
+{
+	map<char, int> first_map;
+	first_map['a'] = 1;
+	first_map['b'] = 3;
+	first_map['c'] = 5;
+	first_map['d'] = 7;
 
+	map<char, int> second_map(first_map.begin(), first_map.end());
+	map<char, int> third_map(second_map);
+	map<char, int,classCmp> fourth_map;
+	bool(*funP)(char, char) = funCmp;
+	map<char, int, bool(*)(char, char)> fifth_map(funP);
+
+	return 0;
+}
+
+//函数签名
+//copy(1)
+//map& operator= (const map& x);
+//move(2)
+//map& operator= (map&& x);
+//initializer list(3)
+//map& operator= (initializer_list<value_type> il);
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+	map<char, int> first_map;
+	first_map['a'] = 1;
+	first_map['b'] = 2;
+	first_map['c'] = 3;
+	map<char, int> second_map;
+	second_map = first_map;
+	first_map = map<char, int>();
+	cout << "Size of first_map:" << first_map.size() << endl;
+	cout << "Size of second_map:" << second_map.size() << endl;
+	return 0;
+}
+//输出：
+//Size of first_map :0
+//Size of first_map :3
+
+//函数签名
+//iterator begin() noexcept;
+//const_iterator begin() const noexcept;
+//iterator end() noexcept;
+//const_iterator end() const noexcept;
+//reverse_iterator rbegin() noexcept;
+//const_reverse_iterator rbegin() const noexcept;
+//reverse_iterator rend() noexcept;
+//const_reverse_iterator rend() const noexcept;
+//const_iterator cbegin() const noexcept;
+//const_iterator cend() const noexcept;
+//const_reverse_iterator crbegin() const noexcept;
+//const_reverse_iterator crend() const noexcept;
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+	map<char, int> first_map;
+	first_map['b'] = 1;
+	first_map['a'] = 2;
+	first_map['c'] = 3;
+	for (auto it = first_map.begin(); it != first_map.end(); it++)
+		cout << it->first << "," << it->second << " ";
+	cout << endl;
+	for (auto it = first_map.cbegin(); it != first_map.cend(); it++)
+		cout << it->first << "," << it->second << " ";
+	cout << endl;
+	for (auto it = first_map.rbegin(); it != first_map.rend(); it++)
+		cout << it->first << "," << it->second << " ";
+	cout << endl;
+	for (auto it = first_map.crbegin(); it != first_map.crend(); it++)
+		cout << it->first << "," << it->second << " ";
+	cout << endl;
+	return 0;
+}
+//输出：
+//a,2 b,1 c,3
+//a,2 b,1 c,3
+//c,3 b,1 a,2
+//c,3 b,1 a,2
+
+//函数签名
+//bool empty() const noexcept;
+//size_type size() const noexcept;
+//size_type max_size() const noexcept;
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+	map<char, int> first_map;
+	first_map['a'] = 1;
+	first_map['b'] = 2;
+	first_map['c'] = 3;
+	if (first_map.empty())
+		cout << "first_map is empty " << endl;
+	else 
+		cout << "first_map is not empty " << endl;
+	cout << first_map.size() << endl;
+	cout << first_map.max_size() << endl;		//取决于机器
+	return 0;
+}
+//输出：
+//first_map is not empty
+//3
+//178956970
+
+//函数签名
+//mapped_type& operator[] (const key_type& k);
+//mapped_type& operator[] (key_type&& k);
+//mapped_type& at (const key_type& k);
+//const mapped_type& at (const key_type& k) const;
+#include<iostream>
+#include<string>
+#include<map>
+#include<assert.h>
+using namespace std;
+int main()
+{
+	map<char, int> first_map;
+	first_map['a'] = 1;
+	first_map['b'] = 2;
+	first_map['c'] = 3;
+	cout << "Size of first_map:" << first_map.size() << endl;
+	cout << first_map['a'] << endl;
+	cout << first_map['b'] << endl;
+	cout << first_map['c'] << endl;
+	cout << first_map['d'] << endl;		//注意这里对map加了一项，详见Effective STL
+	cout << "Size of first_map:" << first_map.size() << endl;
+
+	map<string, int> second_map = {
+		{"a",0},{"b",0},{"c",0} };
+	second_map.at("a") = 1;		//at和[]不同之处在于如果访问一个不存在的键，不会生成一个项，而是抛出一个out_of_range 异常
+	second_map.at("b") = 2;
+	second_map.at("c") = 3;
+	for (auto it = second_map.begin(); it != second_map.end(); it++)
+		cout << it->first << "," << it->second<<" ";
+	cout << endl;
+	
+	return 0;
+}
+//输出：
+//Size of first_map :0
+//1
+//2
+//3
+//0
+//Size of first_map :3
+//a,1 b,2 c,3
+
+//函数签名
+//single element(1)
+//pair<iterator, bool> insert(const value_type& val);
+//template <class P> pair<iterator, bool> insert(P&& val);
+//with hint(2)
+//iterator insert(const_iterator position, const value_type& val);
+//template <class P> iterator insert(const_iterator position, P&& val);
+//range(3)
+//template <class InputIterator>
+//void insert(InputIterator first, InputIterator last);
+//initializer list(4)
+//void insert(initializer_list<value_type> il);
+//(1)
+//iterator  erase(const_iterator position);
+//(2)
+//size_type erase(const key_type& k);
+//(3)
+//iterator  erase(const_iterator first, const_iterator last);
+//void swap(map& x);
+//void clear() noexcept;
+//template <class... Args>
+//pair<iterator, bool> emplace(Args&&... args);
+//template <class... Args>
+//iterator emplace_hint(const_iterator position, Args&&... args);
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+	map<char, int> first_map;
+	//single parameter
+	first_map.insert(pair<char, int>('a', 100));
+	first_map.insert(pair<char, int>('e', 200));
+
+	pair<map<char, int>::iterator, bool> ret;
+	ret = first_map.insert(pair<char, int>('e', 300));
+	if (ret.second == false)
+	{
+		cout << "Element b alreadly existed" << endl;
+		cout << "With a value of " << ret.first->second << endl;
+	}
+
+	//hint position
+	map<char, int>::iterator it = first_map.begin();
+	first_map.insert(it, pair<char, int>('b', 300));
+	first_map.insert(it, pair<char, int>('c', 400));
+
+	//range insertion
+	map<char, int> second_map;
+	second_map.insert(first_map.begin(), first_map.find('c'));
+
+	cout << "first_map:" << endl;
+	for (it = first_map.begin(); it != first_map.end(); it++)
+	{
+		cout << "first:" << it->first << " second:" << it->second << endl;
+	}
+	cout << "second_map:" << endl;
+	for (it = second_map.begin(); it != second_map.end(); it++)
+	{
+		cout << "first:" << it->first << " second:" << it->second << endl;
+	}
+
+	//erasing by iterator
+	it = first_map.find('b');
+	first_map.erase(it);
+
+	//erasing by key
+	first_map.erase('c');
+
+	//erasing by range
+
+	first_map.erase(first_map.begin(), first_map.end());
+	cout << "Size of first_map :" << first_map.size() << endl;
+
+	first_map.swap(second_map);
+	cout << "Size of first_map :" << first_map.size() << endl;
+	cout << "Size of second_map :" << second_map.size() << endl;
+
+	first_map.clear();
+	cout << "Size of first_map :" << first_map.size() << endl;
+
+	first_map.emplace('a', 100);
+	first_map.emplace('b', 100);
+	it = first_map.end();
+	it = first_map.emplace_hint(it, 'c', 10);
+	first_map.emplace_hint(it, 'e', 20);
+	first_map.emplace_hint(first_map.end(), 'd', 14);
+
+	for (auto x : first_map)
+		cout << x.first << ":" << x.second << endl;
+	cout << endl;
+	return 0;
+}
+//输出：
+//Element b alreadly existed
+//With a value of 200
+//first_map:
+//first:a second:100
+//first:b second:300
+//first:c second:400
+//first:e second:200
+//second_map
+//first:a second:100
+//first:b second:300
+//Size of first_map :0
+//Size of first_map :2
+//Size of second_map :0
+//Size of first_map :0
+//a:100
+//b:100
+//c:10
+//d:14
+//e:20
