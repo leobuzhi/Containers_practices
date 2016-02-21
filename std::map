@@ -415,3 +415,25 @@ int main()
 //b->2
 //uper bound points to :
 //c->3
+
+//函数签名
+//allocator_type get_allocator() const noexcept;
+#include<map>
+#include<iostream>
+using namespace std;
+int main()
+{
+	map<char, int> first_map;
+	pair<const char, int> *p;
+
+	p = first_map.get_allocator().allocate(5);
+
+	int psize = sizeof(map<char, int>::value_type) * 5;
+
+	cout << "The allocated array has a size of " << psize << " bytes" << endl;
+
+	first_map.get_allocator().deallocate(p, 5);
+	return 0;
+}
+//输出：
+//The allocated array has a size of 40 bytes
