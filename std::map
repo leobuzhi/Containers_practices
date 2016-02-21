@@ -351,3 +351,67 @@ int main()
 //a->101
 //b->102
 //c->103
+
+//函数签名
+//iterator find(const key_type& k);
+//const_iterator find(const key_type& k) const;
+//size_type count (const key_type& k) const;
+//iterator lower_bound (const key_type& k);
+//const_iterator lower_bound (const key_type& k) const;
+//iterator upper_bound (const key_type& k);
+//const_iterator upper_bound (const key_type& k) const;
+//pair<const_iterator,const_iterator> equal_range (const key_type& k) const;
+//pair<iterator,iterator>             equal_range (const key_type& k);
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+	map<char, int> first_map;
+	first_map['a'] = 1;
+	first_map['b'] = 2;
+	first_map['c'] = 3;
+	first_map['d'] = 4;
+	auto it = first_map.find('b');
+	if (it != first_map.end())
+		first_map.erase(it);
+	for (auto c = 'a'; c <= 'e'; c++)
+		if (first_map.count(c))
+			cout << c << " is an element of first_map." << endl;
+
+	map<char, int> second_map;
+	second_map['a'] = 1;
+	second_map['b'] = 2;
+	second_map['c'] = 3;
+	second_map['d'] = 4;
+	second_map['e'] = 5;
+	auto itLow = second_map.lower_bound('b');		//指向b
+	auto itUp = second_map.upper_bound('d');		//指向e
+
+	second_map.erase(itLow, itUp);					//删除 [itLow,itUp)
+	for (auto x : second_map)
+		cout << x.first << "->" << x.second << endl;
+
+	map<char, int>	third_map;
+	third_map['a'] = 1;
+	third_map['b'] = 2;
+	third_map['c'] = 3;
+
+	pair<map<char, int>::iterator, map<char, int>::iterator> ret;
+	ret = third_map.equal_range('b');
+	cout << "lower bound points to:" << endl;
+	cout << ret.first->first << "->" << ret.first->second << endl;
+	cout << "uper bound points to:" << endl;
+	cout << ret.second->first << "->" << ret.second->second << endl;
+	return 0;
+}
+//输出：
+//a is an element of first_map.
+//c is an element of first_map.
+//d is an element of first_map.
+//a->1
+//e->5
+//lower bound points to:
+//b->2
+//uper bound points to :
+//c->3
