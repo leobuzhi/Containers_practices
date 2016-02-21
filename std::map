@@ -305,3 +305,49 @@ int main()
 //c:10
 //d:14
 //e:20
+
+//函数签名
+//key_compare key_comp() const;
+//value_compare value_comp() const;
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+	map<char, int> first_map;
+	map<char, int>::key_compare first_comp = first_map.key_comp();
+
+	first_map['a'] = 100;
+	first_map['b'] = 200;
+	first_map['c'] = 300;
+
+	cout << "first_map contain:" << endl;
+
+	char highest = first_map.rbegin()->first;
+
+	map<char, int>::iterator it1 = first_map.begin();
+	do {
+		cout << it1->first << "->" << it1->second << endl;
+	} while (first_comp((*it1++).first, highest));
+
+	map<char, int> second_map;
+	second_map['a'] = 101;
+	second_map['b'] = 102;
+	second_map['c'] = 103;
+	cout << "second_map contain:" << endl;
+	pair<char, int> high = *second_map.rbegin();
+	map<char, int>::iterator it2 = second_map.begin();
+	do {
+		cout << it2->first << "->" << it2->second << endl;
+	} while (second_map.value_comp()(*it2++, high));
+	return 0;
+}
+//输出：
+//first_map contain:
+//a->100
+//b->200
+//c->300
+//second_map contain:
+//a->101
+//b->102
+//c->103
