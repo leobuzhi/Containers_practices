@@ -505,3 +505,49 @@ int main()
 }
 //输出：
 //Size of second_mm :4
+
+//函数签名
+//iterator begin() noexcept;
+//const_iterator begin() const noexcept;
+//iterator end() noexcept;
+//const_iterator end() const noexcept;
+//reverse_iterator rbegin() nothrow;
+//const_reverse_iterator rbegin() const nothrow;
+//reverse_iterator rend() nothrow;
+//const_reverse_iterator rend() const nothrow;
+//const_iterator cbegin() const noexcept;
+//const_iterator cend() const noexcept;
+//const_reverse_iterator crbegin() const noexcept;
+//const_reverse_iterator crend() const noexcept;
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+	multimap<char, int> first_map;
+	first_map.insert(pair<char, int>('a', 1));
+	first_map.insert(pair<char, int>('b', 2));
+	first_map.insert(pair<char, int>('b', 3));
+	for (multimap<char, int>::iterator it = first_map.begin(); it != first_map.end(); it++)
+		cout << it->first << "->" << it->second << endl;
+	for (auto it = first_map.rbegin(); it != first_map.rend();it++)
+		cout << it->first << "->" << it->second << endl;
+	for (auto it = first_map.cbegin(); it != first_map.cend();it++)
+		cout << it->first << "->" << it->second << endl;
+	for (auto it = first_map.crbegin(); it != first_map.crend(); it++)
+		cout << it->first << "->" << it->second << endl;
+	return 0;
+}
+//输出：
+//a->1
+//b->2
+//b->3
+//b->3
+//b->2
+//a->1
+//a->1
+//b->2
+//b->3
+//b->3
+//b->2
+//a->1
