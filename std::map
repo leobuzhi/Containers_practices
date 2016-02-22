@@ -437,3 +437,71 @@ int main()
 }
 //输出：
 //The allocated array has a size of 40 bytes
+
+//函数签名
+//empty(1)
+//multimap();
+//explicit multimap(const key_compare& comp,
+//	const allocator_type& alloc = allocator_type());
+//explicit multimap(const allocator_type& alloc);
+//range(2)
+//template <class InputIterator>
+//multimap(InputIterator first, InputIterator last,
+//	const key_compare& comp = key_compare(),
+//	const allocator_type& = allocator_type());
+//template <class InputIterator>
+//multimap(InputIterator first, InputIterator last,
+//	const allocator_type& = allocator_type());
+//copy(3)
+//multimap(const multimap& x);
+//multimap(const multimap& x, const allocator_type& alloc);
+//move(4)
+//multimap(multimap&& x);
+//multimap(multimap&& x, const allocator_type& alloc);
+//initializer list(5)
+//multimap(initializer_list<value_type> il,
+//	const key_compare& comp = key_compare(),
+//	const allocator_type& alloc = allocator_type());
+//multimap(initializer_list<value_type> il,
+//	const allocator_type& alloc = allocator_type());
+//copy (1)	
+//multimap& operator= (const multimap& x);
+//move (2)	
+//multimap& operator= (multimap&& x);
+//initializer list (3)	
+//multimap& operator= (initializer_list<value_type> il);
+#include<iostream>
+#include<map>
+bool funcmp(char &lhs, char &rhs) 
+{
+	return lhs < rhs;
+}
+struct classCmp {
+	bool operator()(const char& lhs, const char& rhs)const
+	{
+		return lhs < rhs;
+	}
+};
+using namespace std;
+int main()
+{
+	multimap<char, int> first_mm;
+	first_mm.insert(pair<char, int>('a', 1));
+	first_mm.insert(pair<char, int>('b', 2));
+	first_mm.insert(pair<char, int>('b', 3));
+	first_mm.insert(pair<char, int>('c', 4));
+
+	multimap<char, int> second_mm(first_mm.begin(),first_mm.end());
+	multimap<char, int> third_mm(second_mm);
+	multimap<char, int, classCmp> fourth_mm;
+	bool(*fptr)(char, int);
+	multimap<char, int, bool(*)(char, int)> fifth_mm(fptr);
+
+	second_mm.clear();
+	second_mm = first_mm;
+	cout << "Size of second_mm:" << second_mm.size() << endl;
+
+	return 0;
+}
+//输出：
+//Size of second_mm :4
