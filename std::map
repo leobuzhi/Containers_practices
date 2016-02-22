@@ -653,3 +653,117 @@ int main()
 //b->4
 //b->2
 //c->1
+
+//函数签名
+//key_compare key_comp() const;
+//value_compare value_comp() const;
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+	multimap<char, int> first_map;
+	first_map.insert(make_pair('a', 1));
+	first_map.insert(make_pair('b', 2));
+	first_map.insert(make_pair('c', 3));
+
+	multimap<char, int>::key_compare mycmp = first_map.key_comp();
+	char highest = first_map.rbegin()->first;
+	auto it = first_map.begin();
+	do {
+		cout << it->first << "->" << it->second << endl;
+	} while (mycmp((*it++).first, highest));
+
+	multimap<char, int> second_map;
+	second_map.insert(make_pair('a', 1));
+	second_map.insert(make_pair('b', 2));
+	second_map.insert(make_pair('c', 3));
+	pair<char, int> highPair = *second_map.rbegin();
+	it = second_map.begin();
+	do {
+		cout << it->first << "->" << it->second << endl;
+	} while (second_map.value_comp()(*it++, highPair));
+
+	return 0;
+}
+//输出：
+//a->1
+//b->2
+//c->3
+//a->1
+//b->2
+//c->3
+
+//函数签名
+//iterator find(const key_type& k);
+//const_iterator find(const key_type& k) const;
+//size_type count(const key_type& k) const;
+//iterator lower_bound(const key_type& k);
+//const_iterator lower_bound(const key_type& k) const;
+//iterator upper_bound(const key_type& k);
+//const_iterator upper_bound(const key_type& k) const;
+//pair<const_iterator, const_iterator> equal_range(const key_type& k) const;
+//pair<iterator, iterator>             equal_range(const key_type& k);
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+	multimap<char, int> first_map;
+	first_map.insert(make_pair('a', 1));
+	first_map.insert(make_pair('a', 2));
+	first_map.insert(make_pair('b', 2));
+	first_map.insert(make_pair('b', 4));
+	first_map.insert(make_pair('c', 3));
+	first_map.insert(make_pair('c', 3));
+	first_map.insert(make_pair('d', 3));
+	auto it = first_map.find('b');
+	cout << it->second << endl;
+	cout << first_map.count('c') << endl;
+
+	auto itLow = first_map.lower_bound('b');
+	auto itUp = first_map.upper_bound('d');
+	for (it = itLow; it != itUp; it++)
+		cout << it->first << "->" << it->second << endl;
+
+	for (char ch = 'a'; ch <= 'd'; ch++)
+	{
+		pair<multimap<char,int>::iterator,multimap<char,int>::iterator> ret = first_map.equal_range(ch);
+		cout << ch << "->";
+		for (multimap<char, int>::iterator it = ret.first; it != ret.second; it++)
+			cout << it->second <<" ";
+		cout << endl;
+	}
+	return 0;
+}
+//输出：
+//2
+//2
+//b->2
+//b->4
+//c->3
+//c->3
+//d->3
+//a->1 2
+//b->2 4
+//c->3 3
+//d->3
+
+//函数签名
+//allocator_type get_allocator() const noexcept;
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+	multimap<char, int> first_map;
+	pair<const char, int>* p;
+
+	p = first_map.get_allocator().allocate(5);
+	int psize = sizeof(multimap<char, int>::value_type) * 5;
+
+	cout << "The allocated array has a size of " << psize << " bytes." << endl;
+	return 0;
+}
+//输出：
+//The allocated array has a size of 40 bytes.
