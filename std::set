@@ -131,3 +131,87 @@ int main()
 //first_set is not empty.
 //first_set's size : 5
 //first_set's maxsize : 214748364
+
+//函数签名
+//single element(1)
+//pair<iterator, bool> insert(const value_type& val);
+//pair<iterator, bool> insert(value_type&& val);
+//with hint(2)
+//iterator insert(const_iterator position, const value_type& val);
+//iterator insert(const_iterator position, value_type&& val);
+//range(3)
+//template <class InputIterator>
+//void insert(InputIterator first, InputIterator last);
+//initializer list(4)
+//void insert(initializer_list<value_type> il);
+//(1)
+//iterator  erase(const_iterator position);
+//(2)
+//size_type erase(const value_type& val);
+//(3)
+//iterator  erase(const_iterator first, const_iterator last);
+//void swap(set& x);
+//void clear() noexcept;
+//template <class... Args>
+//pair<iterator, bool> emplace(Args&&... args);
+//template <class... Args>
+//iterator emplace_hint(const_iterator position, Args&&... args);
+#include<iostream>
+#include<set>
+#include<string>
+using namespace std;
+int main()
+{
+	set<int> first_set = { 10,20,30,40,50 };
+	pair<set<int>::iterator, bool> ret;
+	set<int>::iterator it;
+	ret = first_set.insert(20);
+	if (ret.second == false)
+		it = ret.first;		//"it" now points to element 20
+	first_set.insert(23);
+	first_set.insert(25);
+	first_set.insert(22);
+	int ints[] = { 5,10,20 };
+	first_set.insert(ints, ints + 3);
+	for (auto x : first_set)
+		cout << x << " ";
+	cout << endl;
+	it = first_set.begin();
+	advance(it, 3);
+	first_set.erase(it);
+	cout << first_set.erase(23) << endl;
+	cout << first_set.erase(24) << endl;
+
+	it = first_set.find(25);
+	first_set.erase(it, first_set.end());
+	for (auto x : first_set)
+		cout << x << " ";
+	cout << endl;
+
+	set<int> second_set;
+	first_set.swap(second_set);
+	second_set.clear();
+
+	set<string> third_set;
+	third_set.emplace("abc");
+	third_set.emplace("xyz");
+	auto r = third_set.emplace("abc");
+	if (!r.second)
+		cout << "abc already exists in third_set." << endl;
+
+	auto strIt = third_set.begin();
+	strIt = third_set.emplace_hint(strIt, "ok");
+	strIt = third_set.emplace_hint(strIt, "no");
+	third_set.emplace_hint(third_set.end(), "zzz");
+	for (auto x : third_set)
+		cout << x << " ";
+	cout << endl;
+	return 0;
+}
+//输出：
+//5 10 20 22 23 25 30 40 50
+//1
+//0
+//5 10 20
+//abc already exists in third_set.
+//abc no ok xyz zzz
