@@ -215,3 +215,34 @@ int main()
 //5 10 20
 //abc already exists in third_set.
 //abc no ok xyz zzz
+
+//函数签名
+//key_compare key_comp() const;
+//value_compare value_comp() const;
+#include<iostream>
+#include<set>
+using namespace std;
+int main()
+{
+	set<int> first_set = { 1,2,3,4,5 };
+	int highest;
+	set<int>::key_compare key_cmp = first_set.key_comp();
+
+	highest = *first_set.rbegin();
+	auto it = first_set.begin();
+	do {
+		cout << *it << " ";
+	} while (key_cmp(*(++it), highest));
+	cout << endl;
+
+	set<int>::value_compare value_cmp = first_set.value_comp();
+	it = first_set.begin();
+	do {
+		cout << *it << " ";
+	} while (value_cmp(*(++it), highest));
+	cout << endl;
+	return 0;
+}
+//输出：
+//1 2 3 4
+//1 2 3 4
