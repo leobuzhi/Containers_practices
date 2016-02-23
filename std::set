@@ -1,1 +1,70 @@
+//函数签名
+//empty(1)
+//set();
+//explicit set(const key_compare& comp,
+//	const allocator_type& alloc = allocator_type());
+//explicit set(const allocator_type& alloc);
+//range(2)
+//template <class InputIterator>
+//set(InputIterator first, InputIterator last,
+//	const key_compare& comp = key_compare(),
+//	const allocator_type& = allocator_type());
+//template <class InputIterator>
+//set(InputIterator first, InputIterator last,
+//	const allocator_type& = allocator_type());
+//copy(3)
+//set(const set& x);
+//set(const set& x, const allocator_type& alloc);
+//move(4)
+//set(set&& x);
+//set(set&& x, const allocator_type& alloc);
+//initializer list(5)
+//set(initializer_list<value_type> il,
+//	const key_compare& comp = key_compare(),
+//	const allocator_type& alloc = allocator_type());
+//set(initializer_list<value_type> il,
+//	const allocator_type& alloc = allocator_type());
+//copy(1)
+//set& operator= (const set& x);
+//move(2)
+//set& operator= (set&& x);
+//initializer list(3)
+//set& operator= (initializer_list<value_type> il);
+#include<iostream>
+#include<set>
+using namespace std;
+bool funCmp(const int lhs, const int rhs)
+{
+	return lhs < rhs;
+}
+struct myCmp {
+	bool operator()(const int lhs, const int rhs)const 
+	{
+		return lhs < rhs;
+	}
+};
+int main()
+{
+	set<int> first_set;
+	int ints[] = { 1,2,3,4,5 };
 
+	set<int> second_set(ints, ints + 5);
+
+	set<int> third_set(second_set);
+
+	set<int> fourth_set(third_set.begin(), third_set.end());
+
+	set<int,myCmp> fifth_set;
+
+	bool(*ptr)(const int, const int);
+	set<int, bool(*)(const int, const int)> six_set(ptr);
+
+	first_set = second_set;
+	second_set = set<int>();
+	cout << "Size of first_set :" << first_set.size() << endl;
+	cout << "Size of second_set :" << second_set.size() << endl;
+	return 0;
+}
+//输出：
+//Size of first_set :5
+//Size of first_set :0
