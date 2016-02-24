@@ -369,3 +369,40 @@ int main()
 }
 //输出：
 //1 2 2 2 3 4
+
+//函数签名
+//iterator begin() noexcept;
+//const_iterator begin() const noexcept;
+//iterator end() noexcept;
+//const_iterator end() const noexcept;
+//reverse_iterator rbegin() noexcept;
+//const_reverse_iterator rbegin() const noexcept;
+//const_iterator cbegin() const noexcept;
+//const_iterator cend() const noexcept;
+//const_reverse_iterator crbegin() const noexcept;
+//const_reverse_iterator crend() const noexcept;
+#include<iostream>
+#include<set>
+using namespace std;
+int main()
+{
+	multiset<int> first_multiset = { 1,3,2,4,3 };
+	for (auto it = first_multiset.begin(); it != first_multiset.end(); it++)
+		cout << *it << " ";
+	cout << endl;
+	for (auto it = first_multiset.rbegin(); it != first_multiset.rend(); it++)
+		cout << *it << " ";
+	cout << endl;
+	for (auto it = first_multiset.cbegin(); it != first_multiset.cend(); it++)
+		cout << *it << " ";
+	cout << endl;
+	for (auto it = first_multiset.crbegin(); it != first_multiset.crend(); it++)
+		cout << *it << " ";
+	cout << endl;
+	return 0;
+}
+//输出：
+//1 2 3 3 4
+//4 3 3 2 1
+//1 2 3 3 4
+//4 3 3 2 1
