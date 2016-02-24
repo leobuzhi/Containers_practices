@@ -285,6 +285,7 @@ int main()
 //2 8
 
 //函数签名
+//allocator_type get_allocator() const noexcept;
 #include<iostream>
 #include<set>
 using namespace std;
@@ -303,3 +304,68 @@ int main()
 }
 //输出：
 //1 2 3 4 5
+
+//函数签名
+//empty(1)
+//mutiset();
+//explicit multiset(const key_compare& comp,
+//	const allocator_type& alloc = allocator_type());
+//explicit multiset(const allocator_type& alloc);
+//range(2)
+//template <class InputIterator>
+//multiset(InputIterator first, InputIterator last,
+//	const key_compare& comp = key_compare(),
+//	const allocator_type& = allocator_type());
+//template <class InputIterator>
+//multiset(InputIterator first, InputIterator last,
+//	const allocator_type& = allocator_type());
+//copy(3)
+//multiset(const multiset& x);
+//multiset(const multiset& x, const allocator_type& alloc);
+//move(4)
+//multiset(multiset&& x);
+//multiset(multiset&& x, const allocator_type& alloc);
+//initializer list(5)
+//multiset(initializer_list<value_type> il,
+//	const key_compare& comp = key_compare(),
+//	const allocator_type& alloc = allocator_type());
+//multiset(initializer_list<value_type> il,
+//	const allocator_type& alloc = allocator_type());
+//copy(1)
+//multiset& operator= (const multiset& x);
+//move(2)
+//multiset& operator= (multiset&& x);
+//initializer list(3)
+//multiset& operator= (initializer_list<value_type> il);
+#include<iostream>
+#include<set>
+bool funCmp(const int lhs, const int rhs)
+{
+	return lhs < rhs;
+}
+struct myCmp {
+	bool operator()(const int& lhs, const int& rhs)const 
+	{
+		return lhs < rhs;
+	}
+};
+using namespace std;
+int main()
+{
+	int ints[] = { 1,2,3,2,4,2 };
+	multiset<int> first_multiset;
+	multiset<int> second_multiset(ints, ints + 6);
+	multiset<int> third_multiset(second_multiset);
+	multiset<int> fourth_multiset(second_multiset.begin(),second_multiset.end());
+	multiset<int, myCmp> fifth_multiset;
+	bool(*ptr)(const int, const int);
+	multiset<int, bool(*)(const int, const int)> sixth_multiset(ptr);
+
+	first_multiset = second_multiset;
+	for (auto x : first_multiset)
+		cout << x << " ";
+	cout << endl;
+	return 0;
+}
+//输出：
+//1 2 2 2 3 4
