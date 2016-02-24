@@ -500,3 +500,32 @@ int main()
 //15 20
 //ab ab bc
 //ab ab bc xy
+
+//函数签名
+//key_compare key_comp() const;
+//value_compare value_comp() const;
+#include<iostream>
+#include<set>
+using namespace std;
+int main()
+{
+	multiset<int> first_multiset = { 1,3,2,4,3 };
+	multiset<int>::key_compare first_cmp = first_multiset.key_comp();
+	int highest = *first_multiset.rbegin();
+	auto it = first_multiset.begin();
+	do {
+		cout << *it << " ";
+	} while (first_cmp(*it++, highest));
+	cout << endl;
+
+	multiset<int>::value_compare second_cmp = first_multiset.value_comp();
+	it = first_multiset.begin();
+	do {
+		cout << *it << " ";
+	} while (second_cmp(*it++, highest));
+	cout << endl;
+	return 0;
+}
+//输出：
+//1 2 3 3 4
+//1 2 3 3 4
