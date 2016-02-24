@@ -406,3 +406,97 @@ int main()
 //4 3 3 2 1
 //1 2 3 3 4
 //4 3 3 2 1
+
+//函数签名
+//bool empty() const noexcept;
+//size_type size() const noexcept;
+//size_type max_size() const noexcept;
+#include<iostream>
+#include<set>
+using namespace std;
+int main()
+{
+	multiset<int> first_multiset = { 1,3,2,4,3 };
+	if (!first_multiset.empty())
+		cout << "first_multiset is not empty." << endl;
+	cout << "Size of first_set : " << first_multiset.size() << endl;
+	cout << "Maxsize of first_set : " << first_multiset.max_size() << endl;
+	return 0;
+}
+//输出：
+//first_multiset is not empty.
+//Size of first_set :5
+//Maxsize of first_set :214748364
+
+//函数签名
+//single element(1)
+//iterator insert(const value_type& val);
+//iterator insert(value_type&& val);
+//with hint(2)
+//iterator insert(const_iterator position, const value_type& val);
+//iterator insert(const_iterator position, value_type&& val);
+//range(3)
+//template <class InputIterator>
+//void insert(InputIterator first, InputIterator last);
+//initializer list(4)
+//void insert(initializer_list<value_type> il);
+//(1)
+//iterator  erase(const_iterator position);
+//(2)
+//size_type erase(const value_type& val);
+//(3)
+//iterator  erase(const_iterator first, const_iterator last);
+//void swap(multiset& x);
+//void clear() noexcept;
+//template <class... Args>
+//iterator emplace(Args&&... args);
+//template <class... Args>
+//iterator emplace_hint(const_iterator position, Args&&... args);
+#include<iostream>
+#include<set>
+#include<string>
+using namespace std;
+int main()
+{
+	multiset<int> first_multiset = { 10,30,50,10 };
+	auto it = first_multiset.insert(20);
+
+	it = first_multiset.insert(it, 25);
+	int ints[] = { 10,15,25 };
+	first_multiset.insert(ints, ints + 3);
+	for (auto x : first_multiset)
+		cout << x << " ";
+	cout << endl;
+	it = first_multiset.begin();
+	advance(it, 5);
+	it = first_multiset.erase(it);
+	first_multiset.erase(it, first_multiset.end());
+	first_multiset.erase(10);
+	for (auto x : first_multiset)
+		cout << x << " ";
+	cout << endl;
+
+	multiset<int> second_set;
+	first_multiset.swap(second_set);
+	second_set.clear();
+
+	multiset<string> third_multiset;
+	third_multiset.emplace("ab");
+	third_multiset.emplace("bc");
+	third_multiset.emplace("ab");
+	for (auto x : third_multiset)
+		cout << x << " ";
+	cout << endl;
+
+	auto strIt = third_multiset.find("bc");
+	third_multiset.emplace_hint(strIt, "xy");
+	for (auto x : third_multiset)
+		cout << x << " ";
+	cout << endl;
+	return 0;
+}
+//输出：
+//10 10 10 15 20 25 25 30 50
+//15 20
+//ab ab bc
+//ab ab bc xy
