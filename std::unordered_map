@@ -1,1 +1,76 @@
+//函数签名
+//empty(1)
+//unordered_map();
+//explicit unordered_map(size_type n,
+//	const hasher& hf = hasher(),
+//	const key_equal& eql = key_equal(),
+//	const allocator_type& alloc = allocator_type());
+//explicit unordered_map(const allocator_type& alloc);
+//unordered_map(size_type n, const allocator_type& alloc);
+//unordered_map(size_type n, const hasher& hf, const allocator_type& alloc);
+//range(2)
+//template <class InputIterator>
+//unordered_map(InputIterator first, InputIterator last,
+//	size_type n = /* see below */,
+//	const hasher& hf = hasher(),
+//	const key_equal& eql = key_equal(),
+//	const allocator_type& alloc = allocator_type());
+//template <class InputIterator>
+//unordered_map(InputIterator first, InputIterator last,
+//	size_type n, const allocator_type& alloc);
+//template <class InputIterator>
+//unordered_map(InputIterator first, InputIterator last,
+//	size_type n, const hasher& hf, const allocator_type& alloc);
+//copy(3)
+//unordered_map(const unordered_map& ump);
+//unordered_map(const unordered_map& ump, const allocator_type& alloc);
+//move(4)
+//unordered_map(unordered_map&& ump);
+//unordered_map(unordered_map&& ump, const allocator_type& alloc);
+//initializer list(5)
+//unordered_map(initializer_list<value_type> il,
+//	size_type n = /* see below */,
+//	const hasher& hf = hasher(),
+//	const key_equal& eql = key_equal(),
+//	const allocator_type& alloc = allocator_type());
+//unordered_map(initializer_list<value_type> il,
+//	size_type n, const allocator_type& alloc);
+//unordered_map(initializer_list<value_type> il,
+//	size_type n, const hasher& hf, const allocator_type& alloc);
+//copy(1)
+//unordered_map& operator= (const unordered_map& ump);
+//move(2)
+//unordered_map& operator= (unordered_map&& ump);
+//initializer list(3)
+//unordered_map& operator= (intitializer_list<value_type> il);
+#include<iostream>
+#include<string>
+#include<unordered_map>
+using namespace std;
+typedef unordered_map<string, string> stringMap;
+stringMap merge(stringMap a, stringMap b)
+{
+	stringMap tmp(a);
+	tmp.insert(b.begin(), b.end());
+	return tmp;
+}
+int main()
+{
+	stringMap first_sm;										//empty
+	stringMap second_sm({ { "a","b" }, { "c","d" } });		//init list
+	stringMap third_sm({ {"e","f"},{"g","h"} });
+	stringMap fourth_map(second_sm);						//copy
+	stringMap fifth_map(merge(second_sm, third_sm));		//move ,因为这里是右值
+	stringMap six_map(fifth_map.begin(), fifth_map.end());	//range
+	for (auto &x : six_map)
+		cout << x.first << " " << x.second << endl;
 
+	first_sm = merge(second_sm, third_sm);					//move
+	second_sm = third_sm;									//copy
+	return 0;
+}
+//输出：
+//a b
+//c d
+//e f
+//g h
