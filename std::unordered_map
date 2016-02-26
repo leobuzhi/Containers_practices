@@ -95,3 +95,60 @@ int main()
 //first_um is not empty.
 //Size of first_um : 3
 //Maxsize of first_um : 268435455
+
+//函数签名
+//container iterator(1)
+//iterator begin() noexcept;
+//const_iterator begin() const noexcept;
+//bucket iterator(2)
+//local_iterator begin(size_type n);
+//const_local_iterator begin(size_type n) const;
+//container iterator(1)
+//iterator end() noexcept;
+//const_iterator end() const noexcept;
+//bucket iterator(2)
+//local_iterator end(size_type n);
+//const_local_iterator end(size_type n) const;
+//container iterator(1)
+//const_iterator cbegin() const noexcept;
+//bucket iterator(2)
+//const_local_iterator cbegin(size_type n) const;
+//container iterator(1)
+//const_iterator cend() const noexcept;
+//bucket iterator(2)
+//const_local_iterator cend(size_type n) const;
+#include<iostream>
+#include<unordered_map>
+#include<string>
+using namespace std;
+int main()
+{
+	unordered_map<string, string> first_um = { {"a","a"},{"c","c"},{"e","e"} };
+	for (auto it = first_um.begin(); it != first_um.end(); it++)
+		cout << it->first << "->" << it->second << endl;
+	for (int i = 0; i != first_um.bucket_count(); i++)
+	{
+		cout << "bucket " << i << " contains :";
+		for (auto local_it = first_um.begin(i); local_it != first_um.end(i); local_it++)
+			cout << local_it->first << "->" << local_it->second;
+		cout << endl;
+	}
+	for (auto it = first_um.cbegin(); it != first_um.cend(); it++)
+		cout << it->first << "->" << it->second << endl;
+	return 0;
+}
+//输出：
+//a->a
+//c->c
+//e->e
+//bucket 0 contains :e->e
+//bucket 1 contains :
+//bucket 2 contains :c->c
+//bucket 3 contains :
+//bucket 4 contains :a->a
+//bucket 5 contains :
+//bucket 6 contains :
+//bucket 7 contains :
+//a->a
+//c->c
+//e->e
