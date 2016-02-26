@@ -218,3 +218,70 @@ int main()
 //1
 //c->c
 //e->e
+
+//函数签名
+//template <class... Args>
+//pair<iterator, bool> emplace(Args&&... args);
+//template <class... Args>
+//iterator emplace_hint(const_iterator position, Args&&... args);
+//(1)
+//pair<iterator, bool> insert(const value_type& val);
+//(2)
+//template <class P>
+//pair<iterator, bool> insert(P&& val);
+//(3)
+//iterator insert(const_iterator hint, const value_type& val);
+//(4)
+//template <class P>
+//iterator insert(const_iterator hint, P&& val);
+//(5)
+//template <class InputIterator>
+//void insert(InputIterator first, InputIterator last);
+//(6)
+//void insert(initializer_list<value_type> il);
+//by position (1)	
+//iterator erase(const_iterator position);
+//by key(2)
+//size_type erase(const key_type& k);
+//range(3)
+//iterator erase(const_iterator first, const_iterator last);
+//void clear() noexcept;
+#include<iostream>
+#include<unordered_map>
+#include<string>
+using namespace std;
+int main()
+{
+	unordered_map<string, string> first_um;
+	first_um.emplace("a", "a");
+	first_um.emplace("b", "b");
+	first_um.emplace("c", "c");
+	auto it = first_um.find("b");
+	first_um.emplace_hint(it, "e", "e");
+	for (auto x : first_um)
+		cout << x.first << "->" << x.second << endl;
+	pair<unordered_map<string, string>::iterator, bool> itPair = first_um.insert({ "b", "c" });
+	if (!itPair.second)
+		cout << "The key of \"b\" existed." << endl;
+	first_um.erase("b");
+	first_um.erase(first_um.begin());
+	first_um.emplace("x", "x");
+	first_um.emplace("o", "o");
+	first_um.emplace("z","z");
+	first_um.erase(first_um.find("o"), first_um.end());
+	for (auto x : first_um)
+		cout << x.first << "->" << x.second << endl;
+	first_um.clear();
+	unordered_map<string, string> second_um;
+	first_um.swap(second_um);
+	return 0;
+}
+//输出：
+//a->a
+//b->b
+//c->c
+//e->e
+//The key of "b" existed.
+//c->c
+//e->e
+//x->x
