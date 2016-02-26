@@ -74,3 +74,24 @@ int main()
 //c d
 //e f
 //g h
+
+//函数签名
+//bool empty() const noexcept;
+//size_type size() const noexcept;
+//size_type max_size() const noexcept;
+#include<iostream>
+#include<unordered_map>
+using namespace std;
+int main()
+{
+	unordered_map<int, int> first_um = { {1,1},{3,3} ,{2,2} };
+	if (!first_um.empty())
+		cout << "first_um is not empty." << endl;
+	cout << "Size of first_um : " << first_um.size() << endl;
+	cout << "Maxsize of first_um : " << first_um.max_size() << endl;
+	return 0;
+}
+//输出：
+//first_um is not empty.
+//Size of first_um : 3
+//Maxsize of first_um : 268435455
