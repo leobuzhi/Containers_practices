@@ -152,3 +152,69 @@ int main()
 //a->a
 //c->c
 //e->e
+
+//函数签名
+//mapped_type& operator[] (const key_type& k);
+//mapped_type& operator[] (key_type&& k);
+//mapped_type& at(const key_type& k);
+//const mapped_type& at(const key_type& k) const;
+#include<iostream>
+#include<unordered_map>
+#include<string>
+using namespace std;
+int main()
+{
+	unordered_map<string, string> first_um = { { "a","a" },{ "c","c" },{ "e","e" } };
+	string tmp;
+	first_um["a"] = "b";
+	first_um["b"] = "a";
+	tmp = first_um["z"];
+	for (auto x : first_um)
+		cout << x.first << "->" << x.second << endl;
+	unordered_map<string, int>  second_um = { {"a",1},{"b",2},{"c",3} };
+	second_um.at("a") = 2;
+	second_um.at("b") += 2;
+	second_um.at("c") = second_um.at("a") + 1;
+	for (auto x : second_um)
+		cout << x.first << "->" << x.second << endl;
+	return 0;
+}
+//输出：
+//a->b
+//c->c
+//e->e
+//z->
+//b->a
+//a->2
+//b->4
+//c->3
+
+//函数签名
+//iterator find(const key_type& k);
+//const_iterator find(const key_type& k) const;
+//size_type count(const key_type& k) const;
+//pair<iterator, iterator>
+//equal_range(const key_type& k);
+//pair<const_iterator, const_iterator>
+//equal_range(const key_type& k) const;
+#include<iostream>
+#include<unordered_map>
+#include<string>
+using namespace std;
+int main()
+{
+	unordered_map<string, string> first_um = { { "a","a" },{ "c","c" },{ "e","e" },{"a","b"} };
+	auto it = first_um.find("a");
+	cout << it->first << "->" << it->second << endl;
+	cout << first_um.count("a") << endl;		//因为不允许多键，所以只能返回1或者0
+
+	auto ItPair = first_um.equal_range("c");
+	cout << ItPair.first->first << "->" << ItPair.first->second << endl;
+	cout << ItPair.second->first << "->" << ItPair.second->second << endl;
+	return 0;
+}
+//输出：
+//a->a
+//1
+//c->c
+//e->e
