@@ -414,3 +414,29 @@ int main()
 //new bucket_count :8
 //new load_factor :0.375
 //current bucket_count :32
+
+//函数签名
+//hasher hash_function() const;
+//key_equal key_eq() const;
+#include<iostream>
+#include<unordered_map>
+#include<string>
+using namespace std;
+typedef unordered_map<string, string> stringmap;
+int main()
+{
+	stringmap first_um;
+	stringmap::hasher fn = first_um.hash_function();
+	cout << "this:" << fn("this") << endl;
+	cout << "that:" << fn("that") << endl;
+
+	bool case_insensitive = first_um.key_eq()("ok", "OK");
+	cout << "first_um is ";
+	cout << (case_insensitive ? "case insensitive" : "case sesitive") << endl;
+
+	return 0;
+}
+//输出：
+//this:3660305025
+//that:3407360812
+//first_um is case sesitive
