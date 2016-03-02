@@ -285,3 +285,74 @@ int main()
 //c->c
 //e->e
 //x->x
+
+//函数签名
+//size_type bucket_count() const noexcept;
+//size_type max_bucket_count() const noexcept;
+//size_type bucket_size(size_type n) const;
+//size_type bucket(const key_type& k) const;
+#include<iostream>
+#include<unordered_map>
+#include<string>
+using namespace std;
+int main()
+{
+	unordered_map<string, string> first_um = { { "a","a" },{ "c","c" },{ "e","e" } ,{"f","f"},{"o","k"} };
+	int cnt = first_um.bucket_count();
+	cout << "first_um has " << cnt << "buckets" << endl;
+	for (int i = 0; i != cnt; i++)
+	{
+		cout << "bucket # " << i << "contains:";
+		for (auto it = first_um.begin(i); it != first_um.end(i); it++)
+			cout << "[" << it->first << ":" << it->second << "] ";
+		cout << endl;
+	}
+	unordered_map<int, int> second_um;
+	cout << "max_size = " << second_um.max_size() << endl;
+	cout << "max_bucket_count = " << second_um.max_bucket_count() << endl;
+	cout << "max_load_factor = " << second_um.max_load_factor() << endl;
+
+	for (int i = 0; i != first_um.bucket_count(); i++)
+	{
+		cout << "bucket # " << i << " has " << first_um.bucket_size(i) << " element." << endl;
+	}
+
+	for (auto x : first_um)
+	{
+		cout << "Element [" << x.first << ":" << x.second << "]";
+		cout << "is in bucket # " << first_um.bucket(x.first) << endl;
+	}
+	return 0;
+}
+//输出：
+//first_um has 11buckets
+//bucket # 0contains:[c:c]
+//bucket # 1contains:[e:e]
+//bucket # 2contains:
+//bucket # 3contains:
+//bucket # 4contains:
+//bucket # 5contains:
+//bucket # 6contains:
+//bucket # 7contains:[o:k] [a:a]
+//bucket # 8contains:[f:f]
+//bucket # 9contains:
+//bucket # 10contains:
+//max_size = 1152921504606846975
+//max_bucket_count = 1152921504606846975
+//max_load_factor = 1
+//bucket # 0 has 1 element.
+//bucket # 1 has 1 element.
+//bucket # 2 has 0 element.
+//bucket # 3 has 0 element.
+//bucket # 4 has 0 element.
+//bucket # 5 has 0 element.
+//bucket # 6 has 0 element.
+//bucket # 7 has 2 element.
+//bucket # 8 has 1 element.
+//bucket # 9 has 0 element.
+//bucket # 10 has 0 element.
+//Element[o:k]is in bucket # 7
+//Element[a:a]is in bucket # 7
+//Element[c:c]is in bucket # 0
+//Element[e:e]is in bucket # 1
+//Element[f:f]is in bucket # 8
