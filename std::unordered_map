@@ -356,3 +356,61 @@ int main()
 //Element[c:c]is in bucket # 0
 //Element[e:e]is in bucket # 1
 //Element[f:f]is in bucket # 8
+
+//函数签名
+//float load_factor() const noexcept;
+//get(1)
+//float max_load_factor() const noexcept;
+//set(2)
+//void max_load_factor(float z);
+//void rehash(size_type n);
+//void reserve(size_type n);
+#include<iostream>
+#include<unordered_map>
+#include<string>
+using namespace std;
+int main()
+{
+	unordered_map<string, string> first_um ;
+	cout << "size = " << first_um.size() << endl;
+	cout << "bucket_count = " << first_um.bucket_count() << endl;
+	cout << "load_factor = " << first_um.load_factor() << endl;
+	cout << "max_load_factor = " << first_um.max_load_factor() << endl;
+
+	unordered_map<string, string> second_um = { {"a","b" },{ "c", "d"},{"e","f"} };
+	cout << "current max_load_factor :" << second_um.max_load_factor() << endl;
+	cout << "current size :" << second_um.size() << endl;
+	cout << "current bucket_count:" << second_um.bucket_count() << endl;
+	cout << "current load_factor: " << second_um.load_factor() << endl;
+	float z = second_um.max_load_factor();
+	second_um.max_load_factor(z / 2.0);
+	cout << "new max_load_factor :" << second_um.max_load_factor() << endl;
+	cout << "new size :" << second_um.size() << endl;
+	cout << "new bucket_count:" << second_um.bucket_count() << endl;
+	cout << "new load_factor: " << second_um.load_factor() << endl;
+
+	unordered_map<string, string> third_um;
+	third_um.rehash(30);
+	third_um["a"] = "a";
+	third_um["b"] = "b";
+	third_um["c"] = "c";
+	third_um["d"] = "d";
+	third_um["e"] = "e";
+	cout << "current bucket_count :" << third_um.bucket_count() << endl;
+	third_um.reserve(10);
+	return 0;
+}
+//输出：
+//size = 0
+//bucket_count = 8
+//load_factor = 0
+//max_load_factor = 1
+//current max_load_factor :1
+//current size :3
+//current bucket_count :8
+//current load_factor :0.375
+//new max_load_factor :0.5
+//new size :3
+//new bucket_count :8
+//new load_factor :0.375
+//current bucket_count :32
