@@ -440,3 +440,57 @@ int main()
 //this:3660305025
 //that:3407360812
 //first_um is case sesitive
+
+//函数签名
+//empty(1)
+//explicit unordered_multimap(size_type n = /* see below */,
+//const hasher& hf = hasher(),
+//const key_equal& eql = key_equal(),
+//const allocator_type& alloc = allocator_type());
+//explicit unordered_multimap(const allocator_type& alloc);
+//range(2)
+//template <class InputIterator>
+//unordered_multimap(InputIterator first, InputIterator last,
+//	size_type n = /* see below */,
+//	const hasher& hf = hasher(),
+//	const key_equal& eql = key_equal(),
+//	const allocator_type& alloc = allocator_type());
+//copy(3)
+//unordered_multimap(const unordered_multimap& umm);
+//unordered_multimap(const unordered_multimap& umm, const allocator_type& alloc);
+//move(4)
+//unordered_multimap(unordered_multimap&& umm);
+//unordered_multimap(unordered_multimap&& umm, const allocator_type& alloc);
+//initializer list(5)
+//unordered_multimap(initializer_list<value_type> il, size_type n = /* see below */,
+//const hasher& hf = hasher(), const key_equal& eql = key_equal(),
+//const allocator_type& alloc = allocator_type());
+#include<iostream>
+#include<unordered_map>
+#include<string>
+using namespace std;
+typedef std::unordered_multimap<string, string> stringmap;
+
+stringmap merge(stringmap a, stringmap b)
+{
+	stringmap tmp(a);
+	tmp.insert(b.begin(),b.end());
+	return tmp;
+}
+int main()
+{
+	stringmap first;
+	stringmap second{ { "aa", "bb" }, { "cc", "dd" } };
+	stringmap third{ { "aa", "cc" }, { "cc", "ee" } };
+	stringmap fourth(second);
+	stringmap fifth(merge(third, fourth));		//move
+	stringmap sixth(fifth.begin(), fifth.end());
+	for (auto x : sixth)
+		cout << x.first << "->" << x.second << endl;
+	return 0;
+}
+//输出：
+//aa->cc
+//aa->bb
+//cc->ee
+//cc->dd
