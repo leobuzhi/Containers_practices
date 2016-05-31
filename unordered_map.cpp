@@ -239,7 +239,7 @@ int main()
 //void insert(InputIterator first, InputIterator last);
 //(6)
 //void insert(initializer_list<value_type> il);
-//by position (1)	
+//by position (1)
 //iterator erase(const_iterator position);
 //by key(2)
 //size_type erase(const key_type& k);
@@ -465,11 +465,11 @@ int main()
 //unordered_multimap(initializer_list<value_type> il, size_type n = /* see below */,
 //const hasher& hf = hasher(), const key_equal& eql = key_equal(),
 //const allocator_type& alloc = allocator_type());
-//copy (1)	
+//copy (1)
 //unordered_multimap& operator= ( const unordered_multimap& umm );
-//move (2)	
+//move (2)
 //unordered_multimap& operator= ( unordered_multimap&& umm );
-//initializer list (3)	
+//initializer list (3)
 //unordered_multimap& operator= ( intitializer_list<value_type> il );
 #include<iostream>
 #include<unordered_map>
@@ -530,3 +530,99 @@ int main()
 //max_size of second :268435455
 //max_bucket_count of second :8
 //max_load_factor of second :1
+
+////函数签名
+//container iterator(1)
+//iterator begin() noexcept;
+//const_iterator begin() const noexcept;
+//bucket iterator(2)
+//local_iterator begin(size_type n);
+//const_local_iterator begin(size_type n) const;
+//container iterator(1)
+//iterator end() noexcept;
+//const_iterator end() const noexcept;
+//bucket iterator(2)
+//local_iterator end(size_type n);
+//const_local_iterator end(size_type n) const;
+//container iterator(1)
+//const_iterator cbegin() const noexcept;
+//bucket iterator(2)
+//const_local_iterator cbegin(size_type n) const;
+//container iterator(1)
+//const_iterator cend() const noexcept;
+//bucket iterator(2)
+//const_local_iterator cend(size_type n) const;
+#include<iostream>
+#include<unordered_map>
+#include<string>
+using namespace std;
+int main()
+{
+	unordered_multimap<string, string> umss = {
+		{ "aaa", "bbb" },
+		{ "aaa", "ccc" },
+		{ "bbb", "ccc" },
+		{ "bbb", "ddd" } };
+
+	for (auto it = umss.begin(); it != umss.end(); it++)
+	{
+		cout << it->first << "->" << it->second << endl;
+	}
+	cout << endl;
+	for (auto it = umss.cbegin(); it != umss.cend(); it++)
+	{
+		cout << it->first << "->" << it->second << endl;
+	}
+	return 0;
+}
+//输出：
+//aaa->bbb
+//aaa->ccc
+//bbb->ccc
+//bbb->ddd
+//
+//aaa->bbb
+//aaa->ccc
+//bbb->ccc
+//bbb->ddd
+
+////函数签名
+//iterator find(const key_type& k);
+//const_iterator find(const key_type& k) const;
+//size_type count(const key_type& k) const;
+//pair<iterator, iterator>
+//equal_range(const key_type& k);
+//pair<const_iterator, const_iterator>
+//equal_range(const key_type& k) const;
+#include<iostream>
+#include<unordered_map>
+#include<string>
+#include<algorithm>
+using namespace std;
+
+typedef unordered_map<string, string> stringMap;
+int main()
+{
+	unordered_multimap<string, string> umss = {
+		{ "aaa", "bbb" },
+		{ "aaa", "ccc" },
+		{ "bbb", "ccc" },
+		{ "bbb", "ddd" } };
+	auto it = umss.find("aaa");
+	if (it != umss.end())
+		cout << it->first << "->" << it->second << endl;
+	cout << umss.find("bbb")->first << "->" << umss.find("bbb")->second << endl;
+
+	cout << "count: " << umss.count("aaa") << endl;
+
+	auto range = umss.equal_range("bbb");
+
+	for_each(range.first, range.second, [](stringMap::value_type& x){cout << x.second << " "; });
+
+	return 0;
+}
+//输出：
+//aaa->bbb
+//bbb->ccc
+//count: 2
+//ccc ddd
