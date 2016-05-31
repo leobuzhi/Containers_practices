@@ -626,3 +626,74 @@ int main()
 //bbb->ccc
 //count: 2
 //ccc ddd
+
+////函数签名
+//template <class... Args> iterator emplace(Args&&... args);
+//template <class... Args>
+//iterator emplace_hint(const_iterator position, Args&&... args);
+//(1)
+//iterator insert(const value_type& val);
+//(2)
+//template <class P>
+//iterator insert(P&& val);
+//(3)
+//iterator insert(const_iterator hint, const value_type& val);
+//(4)
+//template <class P>
+//iterator insert(const_iterator hint, P&& val);
+//(5)
+//template <class InputIterator>
+//void insert(InputIterator first, InputIterator last);
+//(6)
+//void insert(initializer_list<value_type> il);
+#include<iostream>
+#include<unordered_map>
+#include<string>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	unordered_multimap<string, string> umss = {
+		{ "aaa", "bbb" },
+		{ "bbb", "ccc" }, };
+
+	umss.emplace("ccc", "ddd");
+
+	for (auto x : umss)
+		cout << x.first << "->" << x.second << endl;
+
+	auto x = umss.find("bbb");
+	umss.emplace_hint(x, "xxx", "xxx");
+
+	cout << endl;
+	for (auto x : umss)
+		cout << x.first << "->" << x.second << endl;
+
+	unordered_multimap<string, string> ano;
+	pair<string, string> myPair("x","y");
+
+	ano.insert(myPair);
+	ano.insert(make_pair("y", "y"));
+	ano.insert(umss.begin(), umss.begin()++);
+	ano.insert({ { "q", "q" }, { "b", "b" }, {"c","c"} });
+
+	for (auto x : ano)
+		cout << x.first << "->" << x.second << endl;
+
+	return 0;
+}
+//输出：
+//aaa->bbb
+//bbb->ccc
+//ccc->ddd
+
+//aaa->bbb
+//bbb->ccc
+//ccc->ddd
+//xxx->xxx
+//x->y
+//q->q
+//y-y
+//b->b
+//c->c
