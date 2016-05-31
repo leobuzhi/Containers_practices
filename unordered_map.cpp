@@ -646,6 +646,14 @@ int main()
 //void insert(InputIterator first, InputIterator last);
 //(6)
 //void insert(initializer_list<value_type> il);
+//by position(1)
+//iterator erase(const_iterator position);
+//by key(2)
+//size_type erase(const key_type& k);
+//range(3)
+//iterator erase(const_iterator first, const_iterator last);
+//void clear() noexcept;
+//void swap(unordered_multimap& umm);
 #include<iostream>
 #include<unordered_map>
 #include<string>
@@ -675,10 +683,26 @@ int main()
 
 	ano.insert(myPair);
 	ano.insert(make_pair("y", "y"));
-	ano.insert(umss.begin(), umss.begin()++);
+	ano.insert(umss.begin(), ++umss.begin());
 	ano.insert({ { "q", "q" }, { "b", "b" }, {"c","c"} });
 
 	for (auto x : ano)
+		cout << x.first << "->" << x.second << endl;
+
+	umss.erase(umss.begin());
+	umss.erase("ccc");
+	umss.erase(umss.begin(),++umss.begin());
+
+	cout << endl;
+	for (auto x : umss)
+		cout << x.first << "->" << x.second << endl;
+
+	umss.clear();
+
+	umss.swap(ano);
+
+	cout << endl;
+	for (auto x : umss)
 		cout << x.first << "->" << x.second << endl;
 
 	return 0;
@@ -694,6 +718,66 @@ int main()
 //xxx->xxx
 //x->y
 //q->q
-//y-y
-//b->b
+//y->y
 //c->c
+//aaa->bbb
+//b->b
+
+//xxx->xxx
+
+//x->y
+//q->q
+//y->y
+//c->c
+//aaa->bbb
+//b->b
+
+//函数签名
+//size_type bucket_count() const noexcept;
+//size_type max_bucket_count() const noexcept;
+//size_type bucket_size(size_type n) const;
+//size_type bucket(const key_type& k) const;
+#include<iostream>
+#include<unordered_map>
+#include<string>
+using namespace std;
+int main()
+{
+	unordered_multimap<string, string> umss = {
+		{ "w", "w" },
+		{ "i", "i" },
+		{ "l", "l" },
+		{ "l", "l" },
+		{ "i", "i" },
+		{ "a", "a" },
+		{ "m", "m" } };
+
+	unsigned n = umss.bucket_count();
+	cout << "umss has " << n << " buckets. " << endl;
+
+	for (unsigned i = 0; i != n; i++)
+	{
+		cout << "bucket " << i;
+		for (auto it = umss.begin(i); it != umss.end(i); it++)
+			cout << " [ " << it->first << " , " << it->second << " ] " ;
+		cout << endl;
+	}
+
+	cout << "max_size : " << umss.max_size() << endl;
+	cout << "max_bucket_count : " << umss.max_bucket_count()<< endl;
+	cout << "max_load_factor : " << umss.max_load_factor() << endl;
+
+	return 0;
+}
+//umss has 8 buckets
+//bucket 0 [ m , m ]
+//bucket 1
+//bucket 2
+//bucket 3 [ l , l ] [ l , l ]
+//bucket 4 [ a , a ] [ i , i ] [ i , i ]
+//bucket 5
+//bucket 6 [ w , w ]
+//bucket 7
+//max_size : 67108863
+//max_bucket_count : 8
+//max_load_factor : 1
