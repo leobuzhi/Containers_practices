@@ -781,3 +781,77 @@ int main()
 //max_size : 67108863
 //max_bucket_count : 8
 //max_load_factor : 1
+
+//函数签名
+//float load_factor() const noexcept;
+//get(1)
+//float max_load_factor() const noexcept;
+//set(2)
+//void max_load_factor(float z);
+//void rehash(size_type n);
+//void reserve(size_type n);
+#include<iostream>
+#include<string>
+#include<unordered_map>
+using namespace std;
+int main()
+{
+	unordered_multimap<int, int> first_ummap;
+	cout << "load_factor " << first_ummap.load_factor() << endl;
+
+	unordered_multimap<string, string> second_ummap = {
+		{ "a", "b" },
+		{ "b", "c" },
+		{ "c", "d" }
+	};
+	cout << "max_load_factor  " << second_ummap.max_load_factor() << endl;
+	cout << "size  " << second_ummap.size() << endl;
+	cout << "bucket_count  " << second_ummap.bucket_count() << endl;
+	cout << "load_factor  " << second_ummap.load_factor() << endl;
+
+	double z = second_ummap.max_load_factor();
+	second_ummap.max_load_factor(z / 2.0);
+
+	cout << "max_load_factor  " << second_ummap.max_load_factor() << endl;
+	cout << "size  " << second_ummap.size() << endl;
+	cout << "bucket_count  " << second_ummap.bucket_count() << endl;
+	cout << "load_factor  " << second_ummap.load_factor() << endl;
+
+	second_ummap.rehash(2);
+	cout << second_ummap.bucket_count() << endl;
+
+	second_ummap.rehash(20);
+	second_ummap.insert({ "x", "y" });
+	second_ummap.insert({ "q", "w" });
+	cout << second_ummap.bucket_count() << endl;
+
+	for (auto x : second_ummap)
+		cout << x.first << "->" << x.second << endl;
+	second_ummap.reserve(10);
+
+	for (auto x : second_ummap)
+		cout << x.first << "->" << x.second << endl;
+
+	return 0;
+}
+//load_factor 0
+//max_load_factor  1
+//size  3
+//bucket_count  8
+//load_factor   0.375
+//max_load_factor  0.5
+//size  3
+//bucket_count  8
+//load_factor   0.375
+//8
+//32
+//a->b
+//b->c
+//c->d
+//x->y
+//q->w
+//a->b
+//b->c
+//c->d
+//x->y
+//q->w
